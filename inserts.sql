@@ -1,0 +1,14 @@
+/*insert de jogador*/
+INSERT INTO EQUIPE (NOME_EQUIPE, NOME_JOGADOR) VALUES (,);
+
+INSERT INTO EQUIPE (NOME_EQUIPE, NOME_JOGADOR) VALUES ("Americano F & E", "Raphael");
+INSERT INTO EQUIPE (NOME_EQUIPE, NOME_JOGADOR) VALUES ("Glorioso Cartoleiro", "Marcel");
+INSERT INTO EQUIPE (NOME_EQUIPE, NOME_JOGADOR) VALUES ("Status Nove FC", "Valdir");
+
+/*Insert Rodada*/
+INSERT INTO RODADA (FOTO_PONTUACAO) VALUES ("raphaelamericano.com.br");
+
+
+/*Insert de pontuacao*/
+
+INSERT INTO PONTUACAO ( ID_JOGADOR, ID_RODADA, TOTAL_PONTOS ) VALUES (1,1, 75.86);
