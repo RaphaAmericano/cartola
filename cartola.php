@@ -1,73 +1,56 @@
 <?php 
 class Cartola { 
     
-    // private $host = "localhost";
-    // private $db = "devmedia";
-    // private $user = "root";
-    // private $pass = "";
-
-    // $con = mysql_pconnect($host, $user, $pass);
-
-    // public function __construct(){
-    //     print '<h1>Funcionando</h1>';
-    // }
-
-    // public function printHost(){
-        
-    // }
     
-
-    // mysql_select_db($db, $con);
-
-    // $query_lista_rodadas = sprintf("SELECT RODADA.ID_RODADA, NOME_EQUIPE, NOME_JOGADOR, TOTAL_PONTOS FROM EQUIPE 
-    //     INNER JOIN PONTUACAO ON EQUIPE.ID_JOGADOR =  PONTUACAO.ID_JOGADOR 
-    //     INNER JOIN RODADA ON PONTUACAO.ID_RODADA = RODADA.ID_RODADA
-    //     ORDER BY TOTAL_PONTOS DESC");
-
-    // if(!$con){
-    //     die('Conexão falhou: '.mysql_error());
-    // } 
-
-    // $dados = mysql_query($query_lista_rodadas, $con);
-
-    // $linha = mysql_fetch_assoc($dados);
-
-    // $total = mysql_num_rows($dados);
-
-
-    // public function exibir($total){
-    //     for ($i=0; $i < $total; $i++) { 
-    //         echo 'funciona'.$i.'<br>';
-    //     }
-        
-    // }
 }
-// $novo = new Cartola;
-// $novo->printHost();
 
+    $host = "127.0.0.1";
+    $db = "cartola";
+    $user = "root";
+    $pass = "";
 
-    private $host = "localhost";
-    private $db = "devmedia";
-    private $user = "root";
-    private $pass = "";
+    $con = new mysqli($host, $user, $pass, $db); 
+    //var_dump($con);
 
-    $con = mysql_pconnect($host, $user, $pass); 
-
-    mysql_select_db($db, $con);
+    if ($con->connect_errno) {
+        print 'Erro '.$con->connect_error.'';
+        exit;
+    };
 
     $query_lista_rodadas = sprintf("SELECT RODADA.ID_RODADA, NOME_EQUIPE, NOME_JOGADOR, TOTAL_PONTOS FROM EQUIPE 
         INNER JOIN PONTUACAO ON EQUIPE.ID_JOGADOR =  PONTUACAO.ID_JOGADOR 
         INNER JOIN RODADA ON PONTUACAO.ID_RODADA = RODADA.ID_RODADA
         ORDER BY TOTAL_PONTOS DESC");
 
-    if(!$con){
-        die('Conexão falhou: '.mysql_error());
-    } 
+// $query_lista_rodadas = sprintf("SELECT * FROM PONTUACAO 
+// INNER JOIN EQUIPE ON EQUIPE.ID_JOGADOR =  PONTUACAO.ID_JOGADOR 
+// INNER JOIN RODADA ON PONTUACAO.ID_RODADA = RODADA.ID_RODADA");
 
-    $dados = mysql_query($query_lista_rodadas, $con);
+//$query_lista_rodadas = sprintf("SELECT * FROM PONTUACAO;");
 
-    $linha = mysql_fetch_assoc($dados);
+    if(!$resultado = $con->query($query_lista_rodadas)){
+        print 'Erro '. $con->error .'\n' ;
+        print "Errno: " . $con->errno . "\n";;
+        exit;
+    }
 
-    $total = mysql_num_rows($dados);
-    print $total;
+    if($resultado->num_rows === 0 ){
+        print "0";
+        exit;
+    }
+
+    if($resultado = $con->query($query_lista_rodadas)){
+        while ($row = $resultado->fetch_assoc()) {
+            
+            print $row['ID_RODADA'].'<br>';
+            print $row['NOME_EQUIPE'].'<br>';
+            print $row['NOME_JOGADOR'].'<br>';
+            print $row['TOTAL_PONTOS'].'<br>';
+        }
+        $resultado->close();
+    }
+
+    // $resultado->free();
+    $con->close();
+
 ?>
