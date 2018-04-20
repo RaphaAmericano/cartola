@@ -10,8 +10,18 @@ class Cartola {
     private $pass = "";
 
     function __construct() {
+        Cartola::checarServidor();
         Cartola::listarRodadas();
         Cartola::listarLideranca();
+    }
+
+    public function checarServidor(){
+        if($_SERVER['SERVER_ADDR'] == "31.220.16.172" ) {
+            $this->host = "localhost";
+            $this->db = "u651336980_carto";
+            $this->user = "u651336980_admin";
+            $this->pass = "fluminense";
+        }
     }
 
     public function listarRodadas(){
@@ -88,7 +98,8 @@ class Cartola {
         EQUIPE E INNER JOIN PONTUACAO P ON E.ID_JOGADOR = P.ID_JOGADOR
         INNER JOIN RODADA R ON R.ID_RODADA = P.ID_RODADA
         GROUP BY  
-        E.NOME_EQUIPE");
+        E.NOME_EQUIPE
+        ORDER BY TOTAL DESC");
 
         if(!$resultado = $con->query($query_lista_rodadas)){
             print 'Erro '. $con->error .'\n' ;
@@ -130,8 +141,24 @@ class Cartola {
         $con->close();
     }
     
-}
+};?>
 
-$cartola = new Cartola(); 
+<section id="cartola">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center animated fadeInUp">
+                <h2>Cartola</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-xs-12 col-xs-offset-0">
+            <?php $cartola = new Cartola();  ?>      
+            </div>
+            <!-- Fim Conteudos -->
+        </div>
+    </div>
+</section>
 
-include('footer.php');
+<?php include('footer.php');  ?>

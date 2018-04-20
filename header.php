@@ -25,11 +25,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     Donwload e informações sobre o template em: http://startbootstrap.com/template-overviews/freelancer/ -->
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/animate.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
@@ -69,7 +69,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header page-scroll">
-                <a class="navbar-brand" href="#page-top">Raphael Americano - Desenvolvedor Front-End</a>
+                <a class="navbar-brand" href="http://www.raphaelamericano.com.br">Raphael Americano - Desenvolvedor Front-End</a>
                 <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -82,19 +82,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="http://www.raphaelamericano.com.br#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#about">Quem Sou</a>
+                        <a href="http://www.raphaelamericano.com.br#about">Quem Sou</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#portifolio">Portifólio</a>
+                        <a href="http://www.raphaelamericano.com.br#portifolio">Portifólio</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Contato</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#repositorios">Repositórios</a>
+                        <a href="http://www.raphaelamericano.com.br#contact">Contato</a>
                     </li>
                 </ul>
             </div>

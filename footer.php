@@ -35,28 +35,28 @@
 
 </script>
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="../js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 
 <!-- Plugin JavaScript -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-<script src="js/classie.js"></script>
-<script src="js/cbpAnimatedHeader.js"></script>
+<script src="../js/classie.js"></script>
+<script src="../js/cbpAnimatedHeader.js"></script>
 
 <!-- Contact Form JavaScript -->
-<script src="js/jqBootstrapValidation.js"></script>
-<script src="js/contact_me.js"></script>
+<script src="../js/jqBootstrapValidation.js"></script>
+<script src="../js/contact_me.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="js/freelancer.js"></script>
+<script src="../js/freelancer.js"></script>
 
 <!-- Footer Animations on scroll-->
 <!-- Corrigir o buraco branco em caso de scroll rapido-->
-<script src="js/animations.js"></script>
+<script src="../js/animations.js"></script>
 <!-- Script do Ajax -->
-<script src="js/ajax-utils.js"></script>
+<script src="../js/ajax-utils.js"></script>
 </body>
 
 </html>
