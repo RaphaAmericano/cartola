@@ -25,6 +25,16 @@ SELECT TOTAL_PONTOS FROM PONTUACAO
 /*  */
 SELECT EQUIPE.ID_JOGADOR, PONTUACAO.ID_PONTUACAO FROM EQUIPE JOIN PONTUACAO ON EQUIPE.ID_JOGADOR = PONTUACAO.ID_JOGADOR ORDER BY PONTUACAO.ID_JOGADOR;
 
+SELECT 
+E.NOME_EQUIPE, sum(P.TOTAL_PONTOS) AS TOTAL
+FROM 
+EQUIPE E INNER JOIN PONTUACAO P ON E.ID_JOGADOR = P.ID_JOGADOR
+INNER JOIN RODADA R ON R.ID_RODADA = P.ID_RODADA
+GROUP BY  
+E.NOME_EQUIPE;
+
+
+
 
 -- SELECT 
 -- a.nid, a.stock, sum(b.qty)
@@ -34,3 +44,35 @@ SELECT EQUIPE.ID_JOGADOR, PONTUACAO.ID_PONTUACAO FROM EQUIPE JOIN PONTUACAO ON E
 -- a.nid, a.stock
 
 -- SELECT PONTUACAO.ID_JOGADOR, EQUIPE.ID_JOGADOR, SUM(PONTUACAO.TOTAL_PONTOS) FROM PONTUACAO INNER JOIN PONTUACAO.ID_JOGADOR = EQUIPE.ID_JOGADOR GROUP BY PONTUACAO.ID_JOGADOR, EQUIPE.ID_JOGADOR;
+
+-- SELECT 
+-- a.nid, a.stock, sum(b.qty)
+-- FROM 
+-- uc_product_stock a INNER JOIN uc_order_products b ON a.nid = b.nid
+-- group by 
+-- a.nid, a.stock
+-- 
+-- 
+-- ANOTAÇÕES
+
+
+-- nid stock   qty
+-- 11  256     4
+-- 11  256     1
+-- 11  256     4
+-- 11  256     1
+-- 11  256     1
+-- 10  746     1
+-- 10  746     2
+-- 10  746     1
+
+--  nid    stock   qty
+--  11     256     11
+--  10     746     4
+
+--  SELECT f.TradeID, f.PricingSecurityID, s.TotalQuantity
+--   FROM FollowingTableStructure AS f
+--   JOIN (SELECT PricingSecurityID, SUM(Quantity) AS TotalQuantity
+--           FROM FollowingTableStructure
+--          GROUP BY PricingSecurityId
+--        ) AS s ON f.PricingSecurityID = s.PricingSecurityID
