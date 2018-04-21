@@ -35,7 +35,8 @@
 
 </script>
 <!-- jQuery -->
-<script src="../js/jquery.js"></script>
+
+<script src="jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
@@ -57,6 +58,7 @@
 <script src="../js/animations.js"></script>
 <!-- Script do Ajax -->
 <script src="../js/ajax-utils.js"></script>
+<script src="cartola.js"></script>
 </body>
 
 </html>

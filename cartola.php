@@ -2,34 +2,28 @@
 
 <?php
 include('header.php'); 
+include('banco.php');
+
 class Cartola {
 
-    private $host = "127.0.0.1";
-    private $db = "cartola";
-    private $user = "root";
-    private $pass = "";
+
+    private $banco;
+    private $con;
 
     function __construct() {
-        Cartola::checarServidor();
-        Cartola::listarRodadas();
-        Cartola::listarLideranca();
+        $this->banco = new BancoDeDados();
+        $this->con = $this->banco->con;
+        Cartola::listarRodadas($this->con);
+        Cartola::listarLideranca($this->con);
     }
 
-    public function checarServidor(){
-        if($_SERVER['SERVER_ADDR'] == "31.220.16.172" ) {
-            $this->host = "localhost";
-            $this->db = "u651336980_carto";
-            $this->user = "u651336980_admin";
-            $this->pass = "fluminense";
-        }
-    }
+    public function listarRodadas($con){
 
-    public function listarRodadas(){
-        $con = new mysqli($this->host,  $this->user, $this->pass, $this->db);   
         if ($con->connect_errno) {
             print 'Erro '.$con->connect_error.'';
             exit;
         };
+        
     
         $query_lista_rodadas = sprintf("SELECT RODADA.ID_RODADA, NOME_EQUIPE, NOME_JOGADOR, TOTAL_PONTOS FROM EQUIPE 
             INNER JOIN PONTUACAO ON EQUIPE.ID_JOGADOR =  PONTUACAO.ID_JOGADOR 
@@ -78,6 +72,7 @@ class Cartola {
             <?php }
 
             print '</tbody></table>';
+            print '<canvas id="grafico1" width="400" height="400"></canvas>';
             $resultado->close();
         }
 
@@ -85,8 +80,8 @@ class Cartola {
         $con->close();
     }
 
-    public function listarLideranca(){
-        $con = new mysqli($this->host,  $this->user, $this->pass, $this->db);   
+    public function listarLideranca($con){
+        // $con = new mysqli($this->host,  $this->user, $this->pass, $this->db);   
         if ($con->connect_errno) {
             print 'Erro '.$con->connect_error.'';
             exit;
@@ -134,6 +129,7 @@ class Cartola {
             <?php }
 
             print '</tbody></table>';
+            print '<canvas id="grafico2" width="400" height="400"></canvas>';
             $resultado->close();
         }
 
@@ -141,7 +137,8 @@ class Cartola {
         $con->close();
     }
     
-};?>
+};
+?>
 
 <section id="cartola">
     <div class="container">
@@ -155,6 +152,7 @@ class Cartola {
             
             <div class="col-xs-12 col-xs-offset-0">
             <?php $cartola = new Cartola();  ?>      
+            <?php //$banco = new BancoDeDados();  ?>      
             </div>
             <!-- Fim Conteudos -->
         </div>
