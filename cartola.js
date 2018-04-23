@@ -5,9 +5,8 @@
         url: 'consultas.php',
         data: 'action=1',
         success: function(response){
-            //console.log(response);
+            console.log(response);
             graficoRodada(response);
-            //console.log(JSON.parse(response));
         }, 
         error: function(err, err2, err3){
             console.log(err+' '+err2+' '+err3);
@@ -23,51 +22,53 @@
         var rgbs = randomRgb(3);
         var rodadas = [];
         var pontos = [];
-
-        for(var i = 0; i < jsonData.pontos.length; i++){      
-            pontos.push(parseFloat(jsonData.pontos[i]));
-            if( i+2 <= jsonData.pontos.length){
-                pontos.push(parseFloat(jsonData.pontos[i+3]));
+        var c = 0;
+        for(var i = 0; i < jsonData.pontos.length; i++){
+            var pontosJogador = [];
+            
+            pontosJogador.push(parseFloat(jsonData.pontos[i]));
+            c++;
+            console.log(pontosJogador);
+            if(jsonData.pontos[i+3] == NaN || jsonData.pontos[i+3] == undefined ){ 
+                pontos.push(pontosJogador);
+                continue; 
             }
-            if(pontos.length == jsonData.pontos.length){
+            if( i+2 <= jsonData.pontos.length  ){
+            
+                
+                
+                pontosJogador.push(parseFloat(jsonData.pontos[i+3]));
+                pontos.push(pontosJogador);
+                c++;
+            }
+            if(c == jsonData.pontos.length){
                 break;
             }
+
+            
         }            
-        console.log(pontos);
+
         for( var i = 0; i < jsonData.nome_jogador.length; i++ ){
             rodadas.push(
                     {
-                        label: jsonData.nome_equipe[i]+' '+jsonData.nome_jogador[i],
+                        label: 'Equipe:'+jsonData.nome_equipe[i]+' - Jogador:'+jsonData.nome_jogador[i],
                         lineTension: 0,
                         borderColor: rgbs[i],
-                        data: [pontos[i], pontos[i+1]]
+                        data: pontos[i]
                     }
                 );
             }
-        console.log(rodadas);
 
+        console.log(pontos);
+        console.log(rodadas);
+        
         var ctx = document.getElementById("grafico1").getContext("2d");
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: jsonData.rodada,
                 datasets: rodadas 
-                // [
-                //     {
-                //         label: "Fulano",
-                //         lineTension: 0,
-                //         borderColor: 'rgb(255, 99, 132)',
-                //         data: [0, 100.20, 5, 10 ]
-                //     },
-                //     {
-                //         label: "Beltrano",
-                //         lineTension: 0,
-                //         borderColor: 'rgb(255, 29, 72)',
-                //         data: [0, 30.10, 20, 70 ]
-                //     }
-                // ]
             }
-            //, options: options
         });
     }
 
@@ -90,7 +91,6 @@
                 numeroRgb.push(Math.floor((Math.random() * 255 ) + 1 ));
             }
             stringRgb = 'rgb('+numeroRgb[0]+','+numeroRgb[1]+','+numeroRgb[0]+')';
-            //console.log(stringRgb);
             arrayCores.push(stringRgb);    
         }
         return arrayCores;
