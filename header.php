@@ -2,13 +2,15 @@
 <html lang="en">
 
 <head>
+
 <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+<!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MDH4B4');</script>
+})(window,document,'script','dataLayer','GTM-MDH4B4');</script> -->
 <!-- End Google Tag Manager -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,12 +26,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- Template adaptado do template "Freelancer".
     Donwload e informações sobre o template em: http://startbootstrap.com/template-overviews/freelancer/ -->
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <?php if($_SERVER['SERVER_ADDR'] == "31.220.16.172" ):  ?>
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/animate.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="../css/style.css" rel="stylesheet">
+    <?php endif; ?>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 

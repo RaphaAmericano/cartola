@@ -34,6 +34,9 @@
 </footer>
 
 </script>
+
+
+<?php if($_SERVER['SERVER_ADDR'] == "31.220.16.172" ):  ?>
 <!-- jQuery -->
 <script src="../js/jquery.js"></script>
 
@@ -57,6 +60,15 @@
 <script src="../js/animations.js"></script>
 <!-- Script do Ajax -->
 <script src="../js/ajax-utils.js"></script>
+
+<?php else: ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="cartola.js"></script>
+<?php endif; ?>
 </body>
 
 </html>

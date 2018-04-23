@@ -78,6 +78,7 @@ class Cartola {
             <?php }
 
             print '</tbody></table>';
+            print '<canvas id="grafico1" width="400" height="400"></canvas>';
             $resultado->close();
         }
 
@@ -134,6 +135,7 @@ class Cartola {
             <?php }
 
             print '</tbody></table>';
+            print '<canvas id="grafico2" width="400" height="400"></canvas>';
             $resultado->close();
         }
 
