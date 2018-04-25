@@ -5,16 +5,34 @@
         url: 'consultas.php',
         data: 'action=1',
         success: function(response){
-            console.log(response);
+            //console.log(response);
             graficoRodada(response);
         }, 
         error: function(err, err2, err3){
-            console.log(err+' '+err2+' '+err3);
+            //console.log(err+' '+err2+' '+err3);
         },
         complete:function(arg){
-            console.log(arg);
+            //console.log(arg);
         }
     });
+
+    $.ajax({
+        type: 'POST',
+        dataType: 'html',
+        url: 'consultas.php',
+        data: 'action=2',
+        success: function(response){
+            console.log(response);
+            graficoLideranca(response);
+        }, 
+        error: function(err, err2, err3){
+            //console.log(err+' '+err2+' '+err3);
+        },
+        complete:function(arg){
+            //console.log(arg);
+        }
+    });
+
 
     function graficoRodada(data){
         
@@ -28,7 +46,6 @@
             
             pontosJogador.push(parseFloat(jsonData.pontos[i]));
             c++;
-            console.log(pontosJogador);
             if(jsonData.pontos[i+3] == NaN || jsonData.pontos[i+3] == undefined ){ 
                 pontos.push(pontosJogador);
                 continue; 
@@ -58,12 +75,9 @@
                     }
                 );
             }
-
-        console.log(pontos);
-        console.log(rodadas);
         
-        var ctx = document.getElementById("grafico1").getContext("2d");
-        var myChart = new Chart(ctx, {
+        var $canvas1 = document.getElementById("grafico1").getContext("2d");
+        var graficoUm = new Chart($canvas1, {
             type: 'line',
             data: {
                 labels: jsonData.rodada,
@@ -72,13 +86,38 @@
         });
     }
 
-    function graficoLideranca(data, options){
-        var ctx = document.getElementById("grafico2").getContext("2d");
-        var myChart = new Chart(ctx, {
+    function graficoLideranca(data){
+
+        jsonData = JSON.parse(data);
+        var rgbs = randomRgb(3);
+        var pontuacoesTotais = [];
+        var rodadas = [];
+        
+        
+        for(var i = 0; i < jsonData.pontos.length; i++){
+            rodadas.push(i);
+            pontuacoesTotais.push(
+                {
+                    label: 'Equipe:'+jsonData.nome_equipe[i],
+                    lineTension: 0,
+                    borderColor: rgbs[i],
+                    data: parseFloat(jsonData.pontos[i])
+                }
+            );
+        }
+    
+        //console.log(pontuacoesTotais);
+        //console.log(rodadas);
+        var $canvas2 = document.getElementById("grafico2").getContext("2d");
+        var graficoDois = new Chart($canvas2, {
             type: 'line',
-            data: data,
-            options: options
+            data: {
+                labels: rodadas,
+                datasets: pontuacoesTotais
+            }
+    
         });
+        console.log(graficoDois.data);
     }
     
     function randomRgb(posicoes){

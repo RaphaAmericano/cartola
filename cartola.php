@@ -32,9 +32,9 @@ class Cartola {
         };
     
         $query_lista_rodadas = sprintf("SELECT RODADA.ID_RODADA, NOME_EQUIPE, NOME_JOGADOR, TOTAL_PONTOS FROM EQUIPE 
-            INNER JOIN PONTUACAO ON EQUIPE.ID_JOGADOR =  PONTUACAO.ID_JOGADOR 
-            INNER JOIN RODADA ON PONTUACAO.ID_RODADA = RODADA.ID_RODADA
-            ORDER BY TOTAL_PONTOS DESC");
+        INNER JOIN PONTUACAO ON EQUIPE.ID_JOGADOR =  PONTUACAO.ID_JOGADOR 
+        INNER JOIN RODADA ON PONTUACAO.ID_RODADA = RODADA.ID_RODADA
+        ORDER BY RODADA.ID_RODADA, TOTAL_PONTOS DESC");
 
         if(!$resultado = $con->query($query_lista_rodadas)){
             print 'Erro '. $con->error .'\n' ;
