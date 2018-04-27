@@ -91,14 +91,15 @@ if($opcao){
             exit;
         };
 
-        $query_total_pontos = sprintf("SELECT 
-        E.NOME_EQUIPE, sum(P.TOTAL_PONTOS) AS TOTAL
-        FROM 
-        EQUIPE E INNER JOIN PONTUACAO P ON E.ID_JOGADOR = P.ID_JOGADOR
-        INNER JOIN RODADA R ON R.ID_RODADA = P.ID_RODADA
-        GROUP BY  
-        E.NOME_EQUIPE
-        ORDER BY TOTAL DESC");
+        $query_total_pontos = sprintf("SELECT E.NOME_EQUIPE,E.ID_JOGADOR, SUM(TOTAL_PONTOS) AS TOTAL FROM EQUIPE E INNER JOIN PONTUACAO P INNER JOIN RODADA R ON E.ID_JOGADOR = P.ID_JOGADOR AND R.ID_RODADA = P.ID_RODADA  GROUP BY P.ID_JOGADOR ORDER BY TOTAL DESC");
+        // SELECT 
+        // E.NOME_EQUIPE, sum(P.TOTAL_PONTOS) AS TOTAL
+        // FROM 
+        // EQUIPE E INNER JOIN PONTUACAO P ON E.ID_JOGADOR = P.ID_JOGADOR
+        // INNER JOIN RODADA R ON R.ID_RODADA = P.ID_RODADA
+        // GROUP BY  
+        // E.NOME_EQUIPE
+        // ORDER BY TOTAL DESC
         //ORDER BY TOTAL_PONTOS DESC
         if(!$resultado = $con->query($query_total_pontos)){
             print 'Erro '. $con->error .'\n' ;

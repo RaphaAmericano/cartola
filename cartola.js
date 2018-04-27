@@ -84,6 +84,7 @@
                 datasets: rodadas 
             }
         });
+        console.log(graficoUm.data);
     }
 
     function graficoLideranca(data){
@@ -106,14 +107,17 @@
             );
         }
     
-        //console.log(pontuacoesTotais);
-        //console.log(rodadas);
+        // console.log(pontuacoesTotais);
+        // console.log(rodadas);
         var $canvas2 = document.getElementById("grafico2").getContext("2d");
         var graficoDois = new Chart($canvas2, {
             type: 'line',
             data: {
                 labels: rodadas,
-                datasets: pontuacoesTotais
+                datasets:[{
+                    labels: "rodada",
+                    datasets:pontuacoesTotais
+                }]
             }
     
         });
