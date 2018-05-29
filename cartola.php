@@ -2,12 +2,12 @@
 
 <?php
 include('header.php'); 
-class Cartola {
 
-    private $host = "127.0.0.1";
-    private $db = "cartola";
-    private $user = "root";
-    private $pass = "";
+class Cartola {
+    private $host = "mysql.hostinger.com.br";
+    private $db = "u651336980_carto";
+    private $user = "u651336980_admin";
+    private $pass = "fluminense";
 
     function __construct() {
         Cartola::checarServidor();
@@ -16,11 +16,11 @@ class Cartola {
     }
 
     public function checarServidor(){
-        if($_SERVER['SERVER_ADDR'] == "31.220.16.172" ) {
-            $this->host = "localhost";
-            $this->db = "u651336980_carto";
-            $this->user = "u651336980_admin";
-            $this->pass = "fluminense";
+        if($_SERVER['SERVER_ADDR'] == "::1" ) {
+            $this->host = "127.0.0.1";
+            $this->db = "cartola";
+            $this->user = "root";
+            $this->pass = "";
         }
     }
 
