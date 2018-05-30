@@ -77,7 +77,7 @@ if($opcao){
             }
             array_push($retorno['pontos'], $row['TOTAL_PONTOS']);
             }
-        print "Fechar conexao";
+            
         $resultado->close();
     }
 

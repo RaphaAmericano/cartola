@@ -1,19 +1,21 @@
 (function( $ ){
     $.ajax({
         type: 'POST',
-        dataType: 'json',
+        dataType: 'text',
         url: 'consultas.php',
         data: 'action=1',
-        success: function(response){
-            //console.log(response);
-            //console.warn(xhr.responseText);
+        success: function(response, xhr){
+            console.log(response);
+            console.log(xhr.responseText);
             graficoRodada(response);
         }, 
         error: function(err, err2, err3){
-            //console.log(err+' '+err2+' '+err3);
+            console.log(err+' '+err2+' '+err3);
         },
         complete:function(jqXHR, textStatus, errorThrown){
             console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
         }
     });
 
@@ -38,7 +40,9 @@
     function graficoRodada(data){
         console.log(data);
         var jsonData = JSON.parse(data);
-        var rgbs = randomRgb(3);
+        var numeroJogadores = jsonData.id_jogador.length;
+        var rgbsBorder = randomRgb(numeroJogadores);
+        var rgbsBackground = randomRgb(numeroJogadores, true);
         var rodadas = [];
         var sets = [];
         var pontuacoes = jsonData.pontos;
@@ -56,12 +60,14 @@
             for(var k =  0; k < jsonData.rodada.length ; k++){
                
                 pontos.push(parseFloat(pontuacoes[k]));
-                if(pontuacoes.length > 7 ){
+                if(pontuacoes.length > jsonData.rodada.length ){
                     pontuacoes.splice(0, 1);
                 }  
             }
             var dataset = {
                 data: pontos,
+                backgroundColor: rgbsBackground[i],
+                borderColor: rgbsBorder[i],
                 label: jsonData.nome_equipe[i]
             }
             sets.push(dataset);
@@ -160,8 +166,12 @@
         });
     }
     
-    function randomRgb(posicoes){
-        
+    function randomRgb(posicoes, background = false){
+        var opacidade = "";
+        if(background){
+            opacidade = ",0.5"
+        }
+
         arrayCores = [];
         for(var i = 0; i < posicoes; i++){
             var stringRgb;
@@ -169,7 +179,7 @@
             for(var k = 0; k < 3; k++){
                 numeroRgb.push(Math.floor((Math.random() * 255 ) + 1 ));
             }
-            stringRgb = 'rgb('+numeroRgb[0]+','+numeroRgb[1]+','+numeroRgb[0]+')';
+            stringRgb = 'rgb('+numeroRgb[0]+','+numeroRgb[1]+','+numeroRgb[0]+opacidade+')';
             arrayCores.push(stringRgb);    
         }
         return arrayCores;
