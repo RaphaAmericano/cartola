@@ -105,18 +105,9 @@ if($opcao){
             exit;
         };
 
-        $query_total_pontos = sprintf("SELECT E.NOME_EQUIPE,E.ID_JOGADOR, SUM(TOTAL_PONTOS) AS TOTAL FROM EQUIPE E INNER JOIN PONTUACAO P INNER JOIN RODADA R ON E.ID_JOGADOR = P.ID_JOGADOR AND R.ID_RODADA = P.ID_RODADA  GROUP BY P.ID_JOGADOR ORDER BY TOTAL DESC");
-        // SELECT 
-        // E.NOME_EQUIPE, sum(P.TOTAL_PONTOS) AS TOTAL
-        // FROM 
-        // EQUIPE E INNER JOIN PONTUACAO P ON E.ID_JOGADOR = P.ID_JOGADOR
-        // INNER JOIN RODADA R ON R.ID_RODADA = P.ID_RODADA
-        // GROUP BY  
-        // E.NOME_EQUIPE
-        // ORDER BY TOTAL DESC
-        //ORDER BY TOTAL_PONTOS DESC
-
-        
+        $query_total_pontos = sprintf("SELECT RODADA.ID_RODADA, NOME_EQUIPE, NOME_JOGADOR, EQUIPE.ID_JOGADOR, TOTAL_PONTOS FROM EQUIPE 
+        INNER JOIN PONTUACAO ON EQUIPE.ID_JOGADOR =  PONTUACAO.ID_JOGADOR 
+        INNER JOIN RODADA ON PONTUACAO.ID_RODADA = RODADA.ID_RODADA");
 
         if(!$resultado = $con->query($query_total_pontos)){
             print 'Erro '. $con->error .'\n' ;
@@ -131,17 +122,16 @@ if($opcao){
 
         if($resultado = $con->query($query_total_pontos)){
             $retorno['nome_equipe'] = array();
+            $retorno['id_jogador'] = array();
+            $retorno['pontos'] = array();
             
             while ($row = $resultado->fetch_assoc()) { 
                 array_push($retorno['nome_equipe'], $row['NOME_EQUIPE']);      
-                array_push($retorno['pontos'], $row['TOTAL']);
+                array_push($retorno['id_jogador'], $row['ID_JOGADOR']);
+                array_push($retorno['pontos'], $row['TOTAL_PONTOS']);
             }
             $resultado->close();
         }
-
-        
-
-
         echo json_encode($retorno);
     }
 }
